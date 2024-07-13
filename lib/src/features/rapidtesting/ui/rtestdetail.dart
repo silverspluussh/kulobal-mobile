@@ -7,6 +7,7 @@ import 'package:kulobal/src/components/appbar.dart';
 import 'package:kulobal/src/components/buttons.dart';
 import 'package:kulobal/src/constant/style.dart';
 import 'package:kulobal/src/constant/text.dart';
+import 'package:kulobal/src/features/pharmaAI/ui/pharmaAI.dart';
 import 'package:kulobal/src/features/rapidtesting/model/rapidtestmodel.dart';
 import 'package:kulobal/src/features/rapidtesting/ui/conductest.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -75,7 +76,7 @@ class _RapidTestDetailState extends ConsumerState<RapidTestDetail> {
       floatingActionButton: FloatingActionButton(
         mini: true,
         tooltip: "Ask Kulobal bot",
-        onPressed: () {},
+        onPressed: () => context.push(PharmaAI.id),
         child: Image.asset(
           "assets/icons/aibot.png",
           height: 30,

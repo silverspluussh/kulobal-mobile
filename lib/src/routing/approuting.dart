@@ -2,12 +2,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kulobal/src/features/authentication/ui/signup.dart';
+import 'package:kulobal/src/features/lab/ui/labrequest.dart';
 import 'package:kulobal/src/features/medication/ui/medication.dart';
 import 'package:kulobal/src/features/medication/ui/medicationinfo.dart';
 import 'package:kulobal/src/features/medication/model/medication.dart';
 
 import 'package:kulobal/src/features/onboarding/ui/privacy.dart';
 import 'package:kulobal/src/features/onboarding/ui/termandcond.dart';
+import 'package:kulobal/src/features/pharmaAI/ui/chatpage.dart';
+import 'package:kulobal/src/features/pharmaAI/ui/pharmaAI.dart';
 import 'package:kulobal/src/features/profile/ui/editprofile.dart';
 import 'package:kulobal/src/features/profile/ui/loyalty.dart';
 import 'package:kulobal/src/features/profile/ui/settings.dart';
@@ -17,6 +20,8 @@ import 'package:kulobal/src/features/rapidtesting/ui/myrapidtest/mytests.dart';
 import 'package:kulobal/src/features/rapidtesting/ui/myrapidtest/testresults.dart';
 import 'package:kulobal/src/features/rapidtesting/ui/rtestdetail.dart';
 import 'package:kulobal/src/features/render/ui/render.dart';
+import 'package:kulobal/src/features/vitals/ui/bloodpressure.dart';
+import 'package:kulobal/src/features/vitals/ui/bloodsugar.dart';
 import 'package:kulobal/src/features/vitals/ui/vitals.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../startup.dart';
@@ -156,6 +161,74 @@ GoRouter goRouter(GoRouterRef ref) {
           transitionDuration: kThemeAnimationDuration,
           reverseTransitionDuration: kThemeAnimationDuration,
           child: const EditProfile(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      ),
+
+      GoRoute(
+        path: Bloodsugar.id,
+        name: Bloodsugar.id,
+        pageBuilder: (_, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          transitionDuration: kThemeAnimationDuration,
+          reverseTransitionDuration: kThemeAnimationDuration,
+          child: const Bloodsugar(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      ),
+      GoRoute(
+        path: Labrequest.id,
+        name: Labrequest.id,
+        pageBuilder: (_, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          transitionDuration: kThemeAnimationDuration,
+          reverseTransitionDuration: kThemeAnimationDuration,
+          child: const Labrequest(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      ),
+
+      GoRoute(
+        path: PharmaAI.id,
+        name: PharmaAI.id,
+        pageBuilder: (_, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          transitionDuration: kThemeAnimationDuration,
+          reverseTransitionDuration: kThemeAnimationDuration,
+          child: const PharmaAI(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      ),
+
+      GoRoute(
+        path: Chat.id,
+        name: Chat.id,
+        pageBuilder: (_, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          transitionDuration: kThemeAnimationDuration,
+          reverseTransitionDuration: kThemeAnimationDuration,
+          child: const Chat(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
+      ),
+      GoRoute(
+        path: BloodPressure.id,
+        name: BloodPressure.id,
+        pageBuilder: (_, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          transitionDuration: kThemeAnimationDuration,
+          reverseTransitionDuration: kThemeAnimationDuration,
+          child: const BloodPressure(),
           transitionsBuilder: (_, animation, __, child) {
             return FadeTransition(opacity: animation, child: child);
           },

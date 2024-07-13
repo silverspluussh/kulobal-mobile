@@ -22,7 +22,7 @@ class TestResults extends ConsumerStatefulWidget {
 }
 
 class _TestResultsState extends ConsumerState<TestResults> {
-  getdelay() async => await Future.delayed(3.seconds);
+  getdelay() async => await Future.delayed(2.seconds);
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,10 @@ class _TestResultsState extends ConsumerState<TestResults> {
                 builder: (context, snap) {
                   if (snap.connectionState == ConnectionState.waiting) {
                     return ListView.separated(
+                        physics: const ClampingScrollPhysics(),
+
                         itemBuilder: ((context, index) => Container(
-                              height: size.height * 0.23,
+                              height: size.height * 0.2,
                               width: size.width,
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 25),
@@ -48,6 +50,7 @@ class _TestResultsState extends ConsumerState<TestResults> {
                             ).shimmer(
                                 duration: 1.seconds,
                                 primaryColor: Vx.gray200,
+
                                 secondaryColor: KGrey)),
                         separatorBuilder: ((context, index) => 10.heightBox),
                         itemCount: 8);
@@ -67,6 +70,7 @@ class _TestResultsState extends ConsumerState<TestResults> {
                           ],
                         ))
                       : ListView.separated(
+                    physics: const ClampingScrollPhysics(),
                           padding: hpad,
                           itemBuilder: ((context, index) => Container(
                                 decoration: BoxDecoration(

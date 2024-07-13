@@ -4,7 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:kulobal/src/components/appbar.dart';
 import 'package:kulobal/src/constant/style.dart';
 import 'package:kulobal/src/constant/text.dart';
+import 'package:kulobal/src/features/lab/ui/labrequest.dart';
 import 'package:kulobal/src/features/medication/ui/medication.dart';
+import 'package:kulobal/src/features/pharmaAI/ui/pharmaAI.dart';
+import 'package:kulobal/src/features/rapidtesting/ui/myrapidtest/mytests.dart';
+import 'package:kulobal/src/features/vitals/ui/bloodpressure.dart';
+import 'package:kulobal/src/features/vitals/ui/bloodsugar.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../vitals/ui/vitals.dart';
@@ -37,10 +42,15 @@ class Home extends StatelessWidget {
             crossAxisSpacing: 10,
             children: [
               VitalsWidgets(
+                title: "Blood Pressure",
                 image: "assets/icons/vitals.svg",
-                action: () => context.push(Vitals.id),
+                action: () => context.push(BloodPressure.id),
               ),
-              VitalsWidgets(image: "assets/icons/heart-59.svg")
+              VitalsWidgets(
+                title: "Blood Sugar",
+                image: "assets/icons/heart-59.svg",
+                action: () => context.push(Bloodsugar.id),
+              )
             ],
           ),
           SliverList(
@@ -49,9 +59,9 @@ class Home extends StatelessWidget {
             Headtext(data: "Actions"),
             10.heightBox,
             ActionsWidget(
-              action: () => context.push(Vitals.id),
+              action: () => context.push(MyTests.id),
               image: "assets/icons/rtest.svg",
-              subtitle: "View videos on all tests",
+              subtitle: "View results from various tests",
               title: "Rapid Test",
             ),
             gapH12,
@@ -63,11 +73,17 @@ class Home extends StatelessWidget {
             ),
             gapH12,
             ActionsWidget(
-              action: () {},
+              action: () => context.push(Labrequest.id),
               image: "assets/icons/vitals.svg",
               subtitle: "Request to test your allergies",
               title: "Lab Test Request",
-            )
+            ) ,gapH12,
+                ActionsWidget(
+                  action: () => context.push(PharmaAI.id),
+                  image: "assets/icons/profile-24.svg",
+                  subtitle: "Ask Pharma AI any health questions",
+                  title: "Pharma AI",
+                )
           ]))
         ]),
       ),
@@ -110,9 +126,10 @@ class ActionsWidget extends StatelessWidget {
 }
 
 class VitalsWidgets extends StatelessWidget {
-  const VitalsWidgets({super.key, this.action, this.image});
+  const VitalsWidgets({super.key, this.action, this.image, required this.title});
   final String? image;
   final VoidCallback? action;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +149,7 @@ class VitalsWidgets extends StatelessWidget {
               title: Maintext(data: "Vital records"),
               contentPadding: EdgeInsets.zero,
               subtitle: Headtext(
-                data: "Blood Pressure",
+                data: title,
               ))
         ],
       ),
